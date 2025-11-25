@@ -1,0 +1,47 @@
+# ========================
+# Global ignores
+# ========================
+.DS_Store
+Thumbs.db
+*.log
+*.env
+*.env.local
+*.env.development
+*.env.production
+
+# npm / node_modules
+node_modules/
+**/node_modules/
+
+# ========================
+# Backend specific
+# ========================
+backend/build/
+backend/dist/
+backend/.parcel-cache/
+backend/.next/
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+
+# ========================
+# Frontend specific
+# ========================
+frontend/build/
+frontend/dist/
+frontend/.parcel-cache/
+frontend/.next/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# ========================
+# IDE / Editor
+# ========================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
