@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const returnController = require('./return.controller');
+router.post('/', returnController.createReturn);
+router.get('/faculty/:facultyId', returnController.getFacultyReturns);
+router.get('/all', returnController.getAllDeptReturns);
+router.put('/:returnId/verify', returnController.verifyReturn);
+router.get('/clearance/:facultyId', returnController.checkDepartmentClearance);
+router.get('/stats', returnController.getStats);
+module.exports = router;
