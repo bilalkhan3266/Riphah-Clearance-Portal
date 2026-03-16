@@ -1,0 +1,476 @@
+/* ============================================
+   DEPARTMENT PAGE CONTAINER
+   ============================================ */
+
+.department-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   SIDEBAR NAVIGATION
+   ============================================ */
+
+.fd-sidebar {
+  width: 280px;
+  background: linear-gradient(180deg, #0a0f24 0%, #1b2a56 50%, #182848 100%);
+  color: white;
+  padding: 25px 18px;
+  position: fixed;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+}
+
+.fd-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fd-sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.fd-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.fd-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.fd-avatar {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fd-name {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.fd-small {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.85;
+  line-height: 1.3;
+}
+
+.fd-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.fd-nav-btn {
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: left;
+  border-left: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fd-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+}
+
+.fd-nav-btn:active {
+  transform: translateX(3px);
+}
+
+.fd-nav-btn.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-left-color: white;
+  font-weight: 600;
+}
+
+.fd-nav-btn.logout {
+  margin-top: 20px;
+  background: rgba(255, 74, 74, 0.2);
+}
+
+.fd-nav-btn.logout:hover {
+  background: rgba(255, 74, 74, 0.3);
+}
+
+.nav-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.fd-footer {
+  font-size: 11px;
+  opacity: 0.7;
+  text-align: center;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  line-height: 1.4;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+
+.fd-main {
+  margin-left: 280px;
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  width: calc(100% - 280px);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.fd-main::-webkit-scrollbar {
+  width: 8px;
+}
+
+.fd-main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fd-main::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.fd-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-height: 100px;
+  background: linear-gradient(180deg, #0a0f24 0%, #1b2a56 50%, #182848 100%);
+  padding: 28px 20px;
+  border-radius: 12px;
+  color: white !important;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.fd-header h1 {
+  color: #ffffff !important;
+  font-size: 26px;
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+}
+
+.fd-header p {
+  color: #ffffff !important;
+  font-size: 15px;
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+  opacity: 1;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================
+   RECORDS CLEARANCE FORM
+   ============================================ */
+
+.records-clearance-form {
+  background: white;
+  color: #333;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.form-header {
+  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  border-left: 4px solid #003366;
+}
+
+.form-header h2 {
+  margin: 0 0 10px 0;
+  color: #003366;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.phase-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  letter-spacing: 0.3px;
+}
+
+.checklist {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.checklist label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  gap: 12px;
+}
+
+.checklist label:hover {
+  background: #f9fafb;
+}
+
+.checklist input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #003366;
+  flex-shrink: 0;
+}
+
+.required {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.remarks-section {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.remarks-section label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.remarks-section textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 100px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.remarks-section textarea:focus {
+  outline: none;
+  border-color: #003366;
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-approve,
+.btn-reject {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 150px;
+}
+
+.btn-approve {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-approve:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.btn-reject {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.btn-reject:hover {
+  background: #e5e7eb;
+}
+
+.success-message {
+  padding: 16px 20px;
+  background: #dcfce7;
+  color: #166534;
+  border-left: 4px solid #16a34a;
+  border-radius: 6px;
+  font-weight: 500;
+  animation: slideInDown 0.4s ease;
+  margin-top: 20px;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .fd-sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+
+  .fd-sidebar.active {
+    left: 0;
+  }
+
+  .fd-main {
+    margin-left: 0;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .fd-header h1 {
+    font-size: 22px;
+  }
+
+  .fd-header p {
+    font-size: 12px;
+  }
+
+  .records-clearance-form {
+    padding: 20px;
+  }
+
+  .button-group {
+    gap: 10px;
+  }
+
+  .btn-approve,
+  .btn-reject {
+    min-width: 130px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fd-sidebar {
+    width: 70vw;
+    padding: 20px 15px;
+  }
+
+  .fd-main {
+    padding: 15px;
+  }
+
+  .fd-header h1 {
+    font-size: 18px;
+  }
+
+  .fd-header p {
+    font-size: 11px;
+  }
+
+  .records-clearance-form {
+    padding: 15px;
+  }
+
+  .form-header {
+    padding: 16px;
+  }
+
+  .form-header h2 {
+    font-size: 18px;
+  }
+
+  .checklist,
+  .remarks-section {
+    padding: 16px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-approve,
+  .btn-reject {
+    width: 100%;
+    min-width: unset;
+  }
+}
