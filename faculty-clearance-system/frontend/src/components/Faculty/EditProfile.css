@@ -1,0 +1,460 @@
+/* ============================================
+   EDIT PROFILE PAGE - Matches Faculty Dashboard
+   ============================================ */
+
+/* ---- Reset ---- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Layout (mirrors Dashboard) ---- */
+.ep-dashboard-page {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: #f4f7fc;
+  color: #0f172a;
+}
+
+/* ---- Sidebar (Professional White - Matches Dashboard/Messages/ClearanceStatus) ---- */
+.ep-sidebar {
+  width: 280px !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+  z-index: 10 !important;
+  border-right: 1px solid #e5e7eb !important;
+}
+
+.ep-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ep-sidebar::-webkit-scrollbar-track {
+  background: #f9fafb;
+}
+
+.ep-sidebar::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.ep-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.ep-profile {
+  display: flex !important;
+  gap: 16px !important;
+  align-items: flex-start !important;
+  margin-bottom: 0 !important;
+  padding: 20px 20px 24px 20px !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%) !important;
+}
+
+.ep-avatar {
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 700 !important;
+  font-size: 22px !important;
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25) !important;
+}
+
+.ep-name {
+  margin: 0 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  line-height: 1.4 !important;
+}
+
+.ep-profile div {
+  flex: 1;
+  min-width: 0;
+}
+
+.ep-small {
+  margin: 4px 0 0 0 !important;
+  color: #6b7280 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+}
+
+.ep-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  margin: 0 !important;
+  padding: 20px 12px !important;
+  flex: 1 !important;
+  overflow-y: auto !important;
+}
+
+.ep-nav-btn {
+  background: transparent !important;
+  border: 0 !important;
+  color: #4b5563 !important;
+  text-align: left !important;
+  padding: 11px 14px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+}
+
+.ep-nav-btn .nav-icon {
+  font-size: 18px !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.2s ease !important;
+  color: inherit !important;
+}
+
+.ep-nav-btn:hover {
+  background: #f0f4ff !important;
+  color: #1e40af !important;
+  transform: translateX(2px) !important;
+}
+
+.ep-nav-btn.active {
+  background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 100%) !important;
+  color: #1e40af !important;
+  font-weight: 600 !important;
+}
+
+.ep-nav-btn.active::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background: linear-gradient(180deg, #3b82f6 0%, #1e40af 100%) !important;
+  border-radius: 0 8px 8px 0 !important;
+}
+
+.ep-footer {
+  font-size: 11px !important;
+  color: #a1a8b8 !important;
+  text-align: center !important;
+  padding: 16px 20px !important;
+  border-top: 1px solid #f3f4f6 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* ---- Main Content ---- */
+.ep-main {
+  margin-left: 280px;
+  flex-grow: 1;
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #f4f7fc;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* ---- Header Banner (matches Dashboard) ---- */
+.ep-header-banner {
+  background: linear-gradient(135deg, #003366 0%, #00509e 60%, #1b6abf 100%);
+  border-radius: 12px;
+  padding: 28px 32px;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 51, 102, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.ep-header-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ep-header-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.3px;
+}
+
+.ep-header-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 6px 0 0 0;
+}
+
+/* ---- Content Card ---- */
+.ep-content-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+  padding: 32px;
+}
+
+/* ---- Alerts ---- */
+.ep-alert {
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  animation: epSlideIn 0.3s ease;
+}
+
+@keyframes epSlideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ep-alert-success {
+  background: #ecfdf5;
+  border-left: 4px solid #10b981;
+  color: #047857;
+}
+
+.ep-alert-error {
+  background: #fef2f2;
+  border-left: 4px solid #ef4444;
+  color: #991b1b;
+}
+
+.ep-alert-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ---- Form Sections ---- */
+.ep-form-section {
+  margin-bottom: 32px;
+}
+
+.ep-section-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ep-hint {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.ep-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.ep-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.ep-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ep-asterisk {
+  color: #ef4444;
+}
+
+.ep-input {
+  padding: 12px 16px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  outline: none;
+}
+
+.ep-input.focused {
+  border-color: #003366;
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.ep-input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.ep-error-msg {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ---- Password Strength ---- */
+.ep-strength-section {
+  margin-top: 12px;
+}
+
+.ep-strength-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.ep-strength-bar {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ep-strength-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.ep-checklist {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ep-checklist-item {
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ep-checklist-item.met {
+  color: #10b981;
+}
+
+/* ---- Buttons ---- */
+.ep-button-group {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.ep-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  min-width: 140px;
+  justify-content: center;
+}
+
+.ep-btn-primary {
+  background: linear-gradient(135deg, #003366 0%, #00509e 100%);
+  color: #000000;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+}
+
+.ep-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 51, 102, 0.4);
+}
+
+.ep-btn-secondary {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1.5px solid #e5e7eb;
+}
+
+.ep-btn-secondary:hover:not(:disabled) {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+.ep-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .ep-sidebar {
+    display: none;
+  }
+  .ep-main {
+    margin-left: 0;
+    padding: 16px;
+  }
+  .ep-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .ep-button-group {
+    flex-direction: column;
+  }
+  .ep-btn {
+    width: 100%;
+  }
+}
