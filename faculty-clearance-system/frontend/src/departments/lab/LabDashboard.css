@@ -1,0 +1,63 @@
+/* ============================================
+   LAB DASHBOARD STYLES
+============================================ */
+
+:root {
+  --primary: #10b981;
+  --primary-2: #059669;
+  --bg: #f0fdf4;
+  --card: #fff;
+  --muted: #6b7280;
+  --success: #16a34a;
+  --pending: #f59e0b;
+  --danger: #ef4444;
+  --radius: 12px;
+  --shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+}
+
+/* ============================================
+   ANIMATIONS
+============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================
+   BUTTON STYLES
+============================================ */
+button svg {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover svg {
+  transform: translateY(-2px) scale(1.1);
+}
+
+button:active svg {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   TABLE ENHANCEMENTS
+============================================ */
+table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.03), transparent);
+}
