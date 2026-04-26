@@ -17,6 +17,11 @@ const corsOptions = {
       'http://localhost:3005'
     ];
     
+    // Add production CORS_ORIGIN if specified
+    if (process.env.CORS_ORIGIN) {
+      allowedOrigins.push(process.env.CORS_ORIGIN);
+    }
+    
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -57,8 +62,9 @@ app.use(express.urlencoded({ extended: true }));
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/faculty_clearance';
 
 console.log('🔄 Connecting to MongoDB...');
+console.log('📍 Database:', MONGO_URI);
 mongoose.connect(MONGO_URI)
-  .then(() => console.log('✅ MongoDB connected'))
+  .then(() => console.log('✅ MongoDB connected to faculty_clearance'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
 // Check Email Configuration
@@ -78,16 +84,19 @@ if (emailUser === 'your-email@gmail.com' || emailUser === 'not-configured' ||
 const authRoutes = require('./routes/authRoutes');
 const clearanceRoutes = require('./routes/clearanceRoutes');
 const clearanceAdminRoutes = require('./routes/clearanceAdminRoutes');
-const clearanceIssuesRoutes = require('./routes/clearanceIssuesRoutes');  // NEW: Check pending issues
+const clearanceIssuesRoutes = require('./routes/clearanceIssuesRoutes');  // Check pending issues
+const departmentIssuesRoutes = require('./routes/departmentIssuesRoutes');  // Department issues display
 const departmentRoutes = require('./routes/departmentRoutes');
-const issuesRoutes = require('./routes/issuesRoutes');  // NEW: Simple issues API
+const issuesRoutes = require('./routes/issuesRoutes');  // Simple issues API
 const adminRoutes = require('./routes/adminRoutes');
 const departmentMessageRoutes = require('./routes/departmentMessageRoutes');
 const departmentEditRoutes = require('./routes/departmentEditRoutes');
+
 app.use('/api', authRoutes);
 app.use('/api', clearanceRoutes);
-app.use('/api/clearance-issues', clearanceIssuesRoutes);  // NEW: Pending issues check
-app.use('/api/issues', issuesRoutes);  // NEW: Issue/return operations
+app.use('/api/clearance-issues', clearanceIssuesRoutes);  // Pending issues check
+app.use('/api/department-issues', departmentIssuesRoutes);  // ✅ Department issues display
+app.use('/api/issues', issuesRoutes);  // Issue/return operations
 app.use('/api', clearanceAdminRoutes);
 app.use('/api', departmentRoutes);
 app.use('/api', adminRoutes);
