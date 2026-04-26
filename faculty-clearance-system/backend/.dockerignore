@@ -1,0 +1,26 @@
+# Backend dockerignore
+node_modules
+npm-debug.log
+.git
+.gitignore
+.env
+.env.local
+.env.*.local
+.DS_Store
+*.log
+coverage
+.nyc_output
+dist
+build
+.vscode
+.idea
+*.swp
+*.swo
+*~
+certificates
+test-*.js
+debug-*.js
+*.tmp
+temp
+.next
+out
