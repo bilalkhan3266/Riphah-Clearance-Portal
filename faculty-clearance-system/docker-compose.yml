@@ -23,9 +23,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-password123}
 
   # Backend API Server
   backend:
