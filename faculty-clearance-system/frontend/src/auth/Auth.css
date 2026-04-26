@@ -46,7 +46,9 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+  background: linear-gradient(-45deg, #003366, #0066cc, #00cc99, #ff6b35);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
   overflow: hidden;
   position: relative;
 }
@@ -97,6 +99,18 @@ body {
   }
   50% {
     transform: translate(30px, -30px);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 

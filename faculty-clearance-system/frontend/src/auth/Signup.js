@@ -17,14 +17,45 @@ const validateName = (name) => {
 
 const validateEmail = (email) => {
   if (!email.trim()) return "Email is required";
-  if (!email.includes("@")) return "Email must contain @ symbol";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-    return "Please enter a valid email address";
+  
+  // Check if email is lowercase
+  if (email !== email.toLowerCase()) {
+    return "Email must be all lowercase (no capital letters)";
   }
+  
+  // Check if it ends with @riphah.edu.pk
+  if (!email.trim().endsWith("@riphah.edu.pk")) {
+    return "Email must use the university domain: @riphah.edu.pk";
+  }
+  
+  // Get the part before @
   const beforeAt = email.trim().split("@")[0];
-  if (!/^[a-zA-Z0-9._-]+$/.test(beforeAt)) {
-    return "Email contains invalid special characters";
+  
+  // Check for numbers in email
+  if (/\d/.test(beforeAt)) {
+    return "Email cannot contain numbers";
   }
+  
+  // Check that it only contains lowercase letters and dots
+  if (!/^[a-z.]+$/.test(beforeAt)) {
+    return "Email can only contain lowercase letters and dots (e.g., bilal.khan@riphah.edu.pk)";
+  }
+  
+  // Check that it has at least one dot
+  if (!beforeAt.includes(".")) {
+    return "Email must contain at least one dot (e.g., firstname.lastname@riphah.edu.pk)";
+  }
+  
+  // Check that it doesn't start or end with a dot
+  if (beforeAt.startsWith(".") || beforeAt.endsWith(".")) {
+    return "Email cannot start or end with a dot";
+  }
+  
+  // Check for consecutive dots
+  if (beforeAt.includes("..")) {
+    return "Email cannot contain consecutive dots";
+  }
+  
   return "";
 };
 

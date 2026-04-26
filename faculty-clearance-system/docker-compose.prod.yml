@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # MongoDB Database (Production)
   mongodb:
-    image: mongo:6.0-alpine
+    image: mongo:7
     container_name: faculty-clearance-mongodb-prod
     restart: always
     environment:
@@ -15,7 +15,6 @@ services:
     volumes:
       - mongodb_prod_data:/data/db
       - mongodb_prod_config:/data/configdb
-      - ./scripts/init-db.js:/docker-entrypoint-initdb.d/init.js:ro
     networks:
       - faculty-network-prod
     healthcheck:

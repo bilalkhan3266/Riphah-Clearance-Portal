@@ -21,15 +21,7 @@ const corsOptions = {
     if (process.env.CORS_ORIGIN) {
       allowedOrigins.push(process.env.CORS_ORIGIN);
     }
-
-    // Always allow Vercel deployment URLs
-    allowedOrigins.push('https://riphahclearanceportal.vercel.app');
-
-    // Allow all vercel.app preview URLs for this project
-    if (origin && origin.endsWith('.vercel.app')) {
-      return callback(null, true);
-    }
-
+    
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);

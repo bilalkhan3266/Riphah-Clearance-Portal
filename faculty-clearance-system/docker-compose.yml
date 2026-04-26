@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # MongoDB Database
   mongodb:
-    image: mongo:6.0-alpine
+    image: mongo:7
     container_name: faculty-clearance-mongodb
     restart: unless-stopped
     environment:
@@ -15,7 +15,6 @@ services:
     volumes:
       - mongodb_data:/data/db
       - mongodb_config:/data/configdb
-      - ./scripts/init-db.js:/docker-entrypoint-initdb.d/init.js:ro
     networks:
       - faculty-network
     healthcheck:

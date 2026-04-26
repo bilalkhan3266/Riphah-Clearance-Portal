@@ -174,6 +174,7 @@ export default function DepartmentDashboard({ departmentName, icon }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Issues and Returns state
   const [departmentIssues, setDepartmentIssues] = useState([]);
@@ -468,8 +469,8 @@ export default function DepartmentDashboard({ departmentName, icon }) {
                   <h2 className="text-3xl font-black text-gray-900">Issues</h2>
                 </div>
                 <p className="text-gray-600 font-medium ml-13">
-                  <span className="font-bold text-blue-600">{pendingIssues.length}</span> pending • 
-                  <span className="font-bold text-purple-600 ml-1">{clearedIssues.length}</span> cleared
+                  <span className="font-bold text-blue-600">{departmentIssues.filter(i => i.status !== 'Cleared').length}</span> pending • 
+                  <span className="font-bold text-purple-600 ml-1">{departmentIssues.filter(i => i.status === 'Cleared').length}</span> cleared
                 </p>
               </div>
               <button
@@ -586,9 +587,43 @@ export default function DepartmentDashboard({ departmentName, icon }) {
               </form>
             )}
 
+            {/* Search Bar */}
+            <div className="mb-8 flex items-center gap-4">
+              <div className="flex-1 relative">
+                <input
+                  type="text"
+                  placeholder="Search by Faculty ID, description, item type..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full px-6 py-3 pl-12 rounded-xl border-2 border-blue-400 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-gray-900 font-medium placeholder-gray-500 shadow-lg"
+                />
+                <div className="absolute left-4 top-3.5 text-blue-500 font-bold text-xl">
+                  🔍
+                </div>
+              </div>
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="px-4 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold transition-all duration-200 shadow-lg"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+
             {departmentIssues.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {departmentIssues.map((issue) => (
+                {departmentIssues
+                  .filter((issue) => {
+                    const query = searchQuery.toLowerCase();
+                    return (
+                      issue.facultyId.toLowerCase().includes(query) ||
+                      issue.description.toLowerCase().includes(query) ||
+                      issue.itemType.toLowerCase().includes(query) ||
+                      (issue.facultyName && issue.facultyName.toLowerCase().includes(query))
+                    );
+                  })
+                  .map((issue) => (
                   <div key={issue._id} className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all duration-300 overflow-hidden group hover:scale-105 transform">
                     {/* Card Header with Status */}
                     <div className={`px-6 py-4 border-b-2 ${
@@ -648,8 +683,24 @@ export default function DepartmentDashboard({ departmentName, icon }) {
                       </div>
                     </div>
 
-                    {/* Card Footer with Action */}
-                    <div className="px-6 py-3 bg-gray-50 border-t border-gray-200 flex justify-end">
+                    {/* Card Footer with Actions */}
+                    <div className="px-6 py-3 bg-gray-50 border-t border-gray-200 flex justify-between gap-3">
+                      <button
+                        onClick={() => {
+                          setReturnFormData({ 
+                            facultyId: issue.facultyId, 
+                            referenceIssueId: issue._id, 
+                            quantityReturned: issue.quantity, 
+                            condition: 'Good', 
+                            notes: '' 
+                          });
+                          setShowReturnForm(true);
+                          setActiveTab('returns');
+                        }}
+                        className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold text-white bg-gradient-to-r from-green-500 to-emerald-600 border-2 border-green-600 hover:from-green-600 hover:to-emerald-700 hover:border-green-700 transition-all duration-200 shadow-md"
+                      >
+                        <RiCheckDoubleLine size={16} className="font-bold" /> Return
+                      </button>
                       <button
                         onClick={() => setEditingIssue(issue)}
                         className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-blue-700 bg-white border-2 border-blue-300 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 shadow-sm"
@@ -665,8 +716,22 @@ export default function DepartmentDashboard({ departmentName, icon }) {
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-200 to-purple-200 flex items-center justify-center mb-6">
                   <RiInboxLine size={40} className="text-blue-600" />
                 </div>
-                <p className="text-xl font-bold text-gray-900 mb-2">No Issues Found 🎉</p>
-                <p className="text-sm text-gray-600">All items are cleared for this department</p>
+                <p className="text-xl font-bold text-gray-900 mb-2">
+                  {searchQuery ? 'No issues found 🔍' : 'No Issues Found 🎉'}
+                </p>
+                <p className="text-sm text-gray-600">
+                  {searchQuery 
+                    ? `No results match "${searchQuery}". Try a different search.` 
+                    : 'All items are cleared for this department'}
+                </p>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="mt-4 px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-bold transition-all duration-200"
+                  >
+                    Clear Search
+                  </button>
+                )}
               </div>
             )}
           </div>
